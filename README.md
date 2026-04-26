@@ -1,16 +1,17 @@
-# Hanemy Homepage v0.1
+# Hanemy Homepage v0.1.3
 
 ハネミーの紹介用ランディングページです。  
-アプリ本体とは別に公開する想定で作成しています。
+v0.1.3 では、ホームページ専用ヒーロー画像を適用し、ヘッダーのロゴ表示を小さなブランドチップ形式に変更しました。
 
 ## 中身
 
 ```text
-hanemy_homepage_v0_1/
+hanemy_homepage_v0_1_3_hero_applied/
 ├─ index.html
 ├─ style.css
 ├─ README.md
 └─ assets/
+   ├─ hero-hanemy-ui.png
    ├─ logo-horizontal.png
    ├─ icon-192.png
    ├─ icon-512.png
@@ -19,17 +20,15 @@ hanemy_homepage_v0_1/
 
 ## 使い方
 
-GitHub Pages に置く場合は、このフォルダの中身をそのままリポジトリ直下にアップロードしてください。
+GitHub Pages に置く場合は、このフォルダの中身を `figiecc/hanemy-site` リポジトリ直下にアップロードしてください。
 
 ## β版アプリへのリンク
 
-現在、CTAボタンのリンクは仮で以下にしています。
+CTAボタンのリンクは以下に設定済みです。
 
 ```text
-https://osita.github.io/hanemy/
+https://figiecc.github.io/hanemy/
 ```
-
-本体アプリのURLが違う場合は、`index.html` 内のこのURLを実際の公開URLに置き換えてください。
 
 ## 設計方針
 
@@ -38,6 +37,7 @@ https://osita.github.io/hanemy/
 - 親共有・貯蓄・ざっくり入力を訴求
 - 広告、金融アフィリエイト、クレカ・ローン誘導に寄せない姿勢を明記
 - スマホ閲覧を前提に軽量化
+- ロゴの白背景感を避けるため、ヘッダーはアイコン＋文字のブランドチップ形式にする
 
 ## 注意
 
