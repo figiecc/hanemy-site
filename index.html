@@ -1,177 +1,354 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ハネミー｜今月あといくら使えるかを見る生活費アプリ</title>
-  <meta name="description" content="ハネミーは、大学生向けの生活費ボードです。家計簿ではなく、今月あといくら使えるかを軽く見える化します。" />
-  <meta name="theme-color" content="#65c7bd" />
-  <meta property="og:title" content="ハネミー｜家計簿じゃなくて、今月あといくら使えるかを見るアプリ" />
-  <meta property="og:description" content="大学生向けの生活費管理アプリ。細かく記録するより、月末まで生活費が持つかを判断します。" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/hero-hanemy-ui.png" />
-  <link rel="icon" href="assets/favicon.png" />
-  <link rel="apple-touch-icon" href="assets/icon-192.png" />
-  <link rel="stylesheet" href="style.css?v=013" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Hanemy｜今月を安心して過ごすためのお金の作戦ボード</title>
+  <meta name="description" content="Hanemy（ハネミー）は、家計簿ではなく、今月を安心して過ごすためのお金の作戦ボードです。今月の残り、生活費、楽しみ用を少ない操作で確認できます。">
+  <meta name="theme-color" content="#fff7ec">
+  <link rel="icon" href="./favicon.png">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <style>
+    :root{
+      --bg:#fff7ec;
+      --surface:#fffdf8;
+      --surface2:#fff8ef;
+      --mint:#5fc5ad;
+      --mint2:#80d4c0;
+      --coral:#f46f6b;
+      --coral2:#ff8a84;
+      --ink:#30383a;
+      --muted:#6f7778;
+      --line:rgba(48,56,58,.10);
+      --shadow:0 22px 56px rgba(75,61,43,.13);
+      --softShadow:0 12px 28px rgba(75,61,43,.08);
+      --radius:28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,.9) 0 145px, transparent 146px),
+        radial-gradient(circle at 88% 14%, rgba(95,197,173,.13) 0 210px, transparent 211px),
+        linear-gradient(180deg,var(--bg),#fff3e4 72%,#fffaf3);
+      line-height:1.75;
+    }
+    a{color:inherit}
+    .page{
+      width:min(1080px,calc(100% - 28px));
+      margin:0 auto;
+      padding:18px 0 46px;
+    }
+    header{
+      position:sticky;
+      top:10px;
+      z-index:10;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:20px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:rgba(255,253,248,.78);
+      backdrop-filter:blur(16px);
+      box-shadow:0 10px 24px rgba(75,61,43,.07);
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:max-content;
+      font-weight:950;
+      letter-spacing:.02em;
+    }
+    .brand img{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      object-fit:cover;
+      background:#fff;
+      box-shadow:0 8px 18px rgba(75,61,43,.10);
+    }
+    .nav{
+      display:flex;
+      gap:4px;
+      align-items:center;
+      justify-content:flex-end;
+      font-size:.9rem;
+      font-weight:900;
+      color:var(--muted);
+      overflow-x:auto;
+      scrollbar-width:none;
+    }
+    .nav::-webkit-scrollbar{display:none}
+    .nav a{
+      text-decoration:none;
+      padding:9px 11px;
+      border-radius:999px;
+      white-space:nowrap;
+    }
+    .nav a:hover{background:rgba(95,197,173,.12);color:var(--ink)}
+    .nav .appLink{
+      color:#fff;
+      background:linear-gradient(135deg,var(--mint2),var(--mint));
+      box-shadow:0 8px 18px rgba(95,197,173,.24);
+    }
+    .hero{
+      display:grid;
+      grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);
+      gap:22px;
+      align-items:stretch;
+      margin-top:10px;
+    }
+    .heroCard,.previewCard,.card,.panel{
+      background:rgba(255,253,248,.88);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .heroCard{
+      padding:34px;
+      display:grid;
+      align-content:center;
+    }
+    .logoWide{
+      width:min(460px,100%);
+      margin:0 0 18px;
+      display:block;
+    }
+    .eyebrow{
+      margin:0 0 8px;
+      color:var(--coral);
+      font-size:.78rem;
+      font-weight:950;
+      letter-spacing:.1em;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(2.05rem,6vw,4.15rem);
+      line-height:1.08;
+      letter-spacing:-.06em;
+    }
+    .lead{
+      margin:18px 0 0;
+      color:var(--muted);
+      font-size:1.05rem;
+      font-weight:760;
+    }
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:26px;
+    }
+    .button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:50px;
+      padding:0 18px;
+      border-radius:19px;
+      text-decoration:none;
+      font-weight:950;
+      border:1px solid var(--line);
+      cursor:pointer;
+    }
+    .primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--coral2),var(--coral));
+      box-shadow:0 10px 20px rgba(244,111,107,.20);
+      border-color:transparent;
+    }
+    .secondary{background:rgba(255,255,255,.82);color:var(--ink)}
+    .previewCard{
+      padding:16px;
+      background:
+        radial-gradient(circle at 86% 8%, rgba(255,255,255,.45) 0 80px, transparent 81px),
+        linear-gradient(145deg,#f8fffb,#fff2e8);
+    }
+    .phone{
+      max-width:360px;
+      margin:0 auto;
+      border-radius:34px;
+      background:#fffdf8;
+      padding:16px;
+      border:1px solid rgba(48,56,58,.10);
+      box-shadow:0 20px 42px rgba(75,61,43,.14);
+    }
+    .phoneTop{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px}
+    .pill{border-radius:999px;background:rgba(95,197,173,.13);color:#319982;padding:5px 10px;font-size:.72rem;font-weight:950;white-space:nowrap}
+    .mockBoard{border-radius:24px;padding:18px 16px;background:linear-gradient(145deg,#eefbf7,#fff4ed);border:1px solid rgba(95,197,173,.22)}
+    .mockLabel{color:var(--muted);font-size:.8rem;font-weight:950}
+    .mockMoney{display:block;font-size:2.55rem;line-height:1;letter-spacing:-.06em;font-weight:950;margin-top:4px}
+    .miniGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+    .mini{border-radius:18px;background:rgba(255,255,255,.72);border:1px solid rgba(48,56,58,.08);padding:10px}
+    .mini strong{display:block;font-size:1.05rem}
+    .section{scroll-margin-top:94px;margin-top:22px}
+    .sectionTitle{margin:0 0 12px;font-size:1.55rem;letter-spacing:-.04em}
+    .sectionLead{margin:0 0 16px;color:var(--muted);font-weight:760}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .card{padding:22px;box-shadow:var(--softShadow)}
+    .cardIcon{width:42px;height:42px;border-radius:16px;display:grid;place-items:center;background:rgba(95,197,173,.14);color:#319982;font-weight:950;margin-bottom:10px}
+    .card:nth-child(2) .cardIcon{background:rgba(244,111,107,.12);color:var(--coral)}
+    .card h3{margin:0 0 8px;font-size:1.12rem;letter-spacing:-.03em}
+    .card p{margin:0;color:var(--muted);font-weight:720;font-size:.94rem}
+    .panel{padding:26px;box-shadow:var(--softShadow)}
+    .conceptGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+    .point{border-radius:22px;background:var(--surface2);border:1px solid var(--line);padding:18px}
+    .point strong{display:block;margin-bottom:4px}
+    .point span{display:block;color:var(--muted);font-weight:720;font-size:.94rem}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+    .step{padding:18px;border-radius:22px;background:#fff;border:1px solid var(--line)}
+    .step b{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:999px;background:rgba(244,111,107,.12);color:var(--coral);margin-bottom:8px}
+    .note{margin-top:14px;padding:16px 18px;border-radius:22px;background:rgba(95,197,173,.11);border:1px solid rgba(95,197,173,.18);color:#3f6f67;font-weight:800}
+    .contactBox{display:flex;align-items:center;justify-content:space-between;gap:18px;border-radius:24px;background:linear-gradient(145deg,#fff,#fff7ef);border:1px solid var(--line);padding:20px}
+    .contactBox p{margin:4px 0 0;color:var(--muted);font-weight:720}
+    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:.82rem;font-weight:800}
+    .tm{display:block;margin-top:4px;font-weight:950;color:var(--ink)}
+    @media(max-width:840px){
+      .hero{grid-template-columns:1fr}.previewCard{order:-1}.cards{grid-template-columns:1fr}.conceptGrid{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:620px){
+      .page{width:min(100% - 22px,520px);padding-top:12px}
+      header{top:6px;align-items:flex-start;flex-direction:column;border-radius:22px}
+      .nav{width:100%;justify-content:flex-start;font-size:.84rem}
+      .heroCard{padding:25px 21px}.phone{max-width:100%}.actions .button{width:100%}.steps{grid-template-columns:1fr}.contactBox{align-items:stretch;flex-direction:column}.contactBox .button{width:100%}
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="ハネミー トップへ">
-      <span class="brand-mark">
-        <img src="assets/icon-192.png" alt="" />
-      </span>
-      <span class="brand-text">
-        <strong>Hanemy</strong>
-        <small>ハネミー</small>
-      </span>
-    </a>
-    <nav class="nav" aria-label="ページ内ナビゲーション">
-      <a href="#features">できること</a>
-      <a href="#promise">やらないこと</a>
-      <a href="#beta">β版</a>
-      <a class="nav-cta" href="https://figiecc.github.io/hanemy/">β版を使う</a>
-    </nav>
-  </header>
+  <div class="page">
+    <header>
+      <a class="brand" href="#top" data-scroll="top" aria-label="Hanemyトップへ">
+        <img src="./assets/logo.png" alt="Hanemy">
+        <span>Hanemy™</span>
+      </a>
+      <nav class="nav" aria-label="ページ内メニュー">
+        <a href="#concept" data-scroll="concept">コンセプト</a>
+        <a href="#features" data-scroll="features">できること</a>
+        <a href="#howto" data-scroll="howto">使い方</a>
+        <a href="#contact" data-scroll="contact">問い合わせ</a>
+        <a class="appLink" href="https://figiecc.github.io/hanemy/">アプリを開く</a>
+      </nav>
+    </header>
 
-  <main id="top">
-    <section class="hero section">
-      <div class="hero-copy">
-        <p class="eyebrow">大学生のための生活費ボード</p>
-        <h1>家計簿じゃなくて、<br />今月あといくら使えるかを見るアプリ。</h1>
-        <p class="lead">
-          ハネミーは、細かい支出を毎日記録するためのアプリではありません。
-          月末まで生活費が持つかを、スマホで軽く確認するための判断支援アプリです。
-        </p>
-        <div class="cta-row">
-          <a class="button primary" href="https://figiecc.github.io/hanemy/">β版を使ってみる</a>
-          <a class="button secondary" href="#features">何ができる？</a>
-        </div>
-        <p class="microcopy">ログインなし / 端末内保存 / β版公開中</p>
-      </div>
-
-      <div class="hero-visual" aria-label="ハネミーのブランドビジュアル">
-        <img
-          src="assets/hero-hanemy-ui.png"
-          alt="ハネミーのアプリ画面とがま口キャラクター"
-          class="hero-image"
-        />
-      </div>
-    </section>
-
-    <section class="section problem">
-      <div class="section-title">
-        <p class="eyebrow">WHY HANEMY</p>
-        <h2>家計簿が続かなくても、月末に詰まないために。</h2>
-      </div>
-      <div class="problem-grid">
-        <article>
-          <span>01</span>
-          <h3>細かい入力が続かない</h3>
-          <p>レシート単位で管理するのは重い。ハネミーは、使った分をざっくり足すだけです。</p>
-        </article>
-        <article>
-          <span>02</span>
-          <h3>月末が近づくと不安</h3>
-          <p>残りのお金と日数を見て、今のペースで大丈夫かを判断できます。</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h3>親に細かく見せたくない</h3>
-          <p>内訳を見せすぎず、生活費の状況だけを共有できるカードを作れます。</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="features" class="section features">
-      <div class="section-title">
-        <p class="eyebrow">FEATURES</p>
-        <h2>ハネミーでできること</h2>
-      </div>
-      <div class="feature-list">
-        <article class="feature-card">
-          <div class="feature-icon">¥</div>
-          <div>
-            <h3>今月あと使えるお金を見る</h3>
-            <p>収入と固定費を入れると、生活費として使える残りをすぐに確認できます。</p>
-          </div>
-        </article>
-        <article class="feature-card">
-          <div class="feature-icon">＋</div>
-          <div>
-            <h3>今日使った分をざっくり足す</h3>
-            <p>カテゴリを選んで、500円・1000円単位で軽く入力。家計簿のような細かさは求めません。</p>
-          </div>
-        </article>
-        <article class="feature-card">
-          <div class="feature-icon">貯</div>
-          <div>
-            <h3>使わなかった分を貯蓄へ</h3>
-            <p>月をまたぐと、残った生活費は貯蓄として積み上がります。使いすぎた場合は勝手に貯蓄を削りません。</p>
-          </div>
-        </article>
-        <article class="feature-card">
-          <div class="feature-icon">共</div>
-          <div>
-            <h3>親に送れる共有カード</h3>
-            <p>細かい内訳を隠して、生活費の状態だけを自然な文言で共有できます。</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="promise" class="section promise">
-      <div class="promise-card">
-        <div>
-          <p class="eyebrow">PROMISE</p>
-          <h2>ハネミーがやらないこと</h2>
-          <p>
-            お金の不安を扱うアプリだから、ユーザーの不安を煽る設計には寄せません。
+    <main id="top">
+      <section class="hero" aria-label="Hanemy紹介">
+        <div class="heroCard">
+          <img class="logoWide" src="./assets/logo.png" alt="Hanemy ハネミー">
+          <p class="eyebrow">お金の作戦ボード</p>
+          <h1>今月を、安心して過ごす。</h1>
+          <p class="lead">
+            ハネミーは、細かく支出を記録する家計簿ではありません。<br>
+            生活費と楽しみ用を見える化して、今月あとどれくらい使えるかを少ない操作で確認するアプリです。
           </p>
+          <div class="actions">
+            <a class="button primary" href="https://figiecc.github.io/hanemy/">アプリを開く</a>
+            <a class="button secondary" href="#concept" data-scroll="concept">ハネミーとは</a>
+          </div>
         </div>
-        <ul>
-          <li>細かい家計簿化</li>
-          <li>広告で不安を煽ること</li>
-          <li>クレカ・ローン誘導</li>
-          <li>金融アフィリエイト前提の設計</li>
-        </ul>
-      </div>
-    </section>
 
-    <section id="beta" class="section beta">
-      <div class="section-title">
-        <p class="eyebrow">PUBLIC BETA</p>
-        <h2>まずはβ版として公開中です。</h2>
-        <p>
-          まだ改善中のβ版です。まずは、自分のスマホで開いて
-          「今月あといくら使えるか」がすぐ分かるかを試してください。
+        <div class="previewCard" aria-label="アプリ画面イメージ">
+          <div class="phone">
+            <div class="phoneTop">
+              <strong>今月の作戦ボード</strong>
+              <span class="pill">公開β</span>
+            </div>
+            <div class="mockBoard">
+              <span class="mockLabel">今月の残り</span>
+              <strong class="mockMoney">42,000円</strong>
+              <p class="mockLabel">生活と楽しみに使える、今月の現在地です。</p>
+              <div class="miniGrid">
+                <div class="mini"><span class="mockLabel">今日の目安</span><strong>1,400円</strong></div>
+                <div class="mini"><span class="mockLabel">生活費</span><strong>24,000円</strong></div>
+                <div class="mini"><span class="mockLabel">楽しみ用</span><strong>18,000円</strong></div>
+                <div class="mini"><span class="mockLabel">残せそう</span><strong>12,000円</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section panel" id="concept">
+        <h2 class="sectionTitle">かわいい家計簿ではなく、やさしい作戦ボード。</h2>
+        <p class="sectionLead">
+          ハネミーが見たいのは「過去の支出の細かい内訳」よりも、「今月をどう安心して過ごすか」です。
         </p>
-      </div>
-      <div class="beta-grid">
-        <div class="beta-note">
-          <h3>β版の仕様</h3>
-          <ul>
-            <li>ログインなし</li>
-            <li>データは端末内に保存</li>
-            <li>クラウド同期なし</li>
-            <li>スマホ利用を前提に調整中</li>
-          </ul>
+        <div class="conceptGrid">
+          <div class="point"><strong>家計簿ではない</strong><span>レシート管理や細かい店名入力を主役にしません。</span></div>
+          <div class="point"><strong>今月の判断を助ける</strong><span>生活費・楽しみ用・やりたいことを分けて、使える余白を見ます。</span></div>
+          <div class="point"><strong>入力はざっくり</strong><span>毎日完璧に記録するより、少ない操作で現在地を更新します。</span></div>
+          <div class="point"><strong>安心を優先</strong><span>かわいさは添える程度。見やすさと分かりやすさを中心にします。</span></div>
         </div>
-        <div class="beta-action">
-          <img src="assets/icon-192.png" alt="" />
-          <h3>ハネミーを使ってみる</h3>
-          <p>毎日開いても重くない生活費ボードを目指しています。</p>
-          <a class="button primary wide" href="https://figiecc.github.io/hanemy/">β版を開く</a>
-        </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer class="site-footer">
-    <img src="assets/icon-192.png" alt="" />
-    <div>
-      <strong>ハネミー / HANEMY</strong>
-      <span>家計簿じゃなくて、今月あといくら使えるかを見るアプリ。</span>
-    </div>
-  </footer>
+      <section class="section" id="features">
+        <h2 class="sectionTitle">できること</h2>
+        <p class="sectionLead">公開βでは、今月のお金の作戦を立てて、ざっくり更新して、必要なら共有できます。</p>
+        <div class="cards">
+          <article class="card"><div class="cardIcon">¥</div><h3>今月の残りを確認</h3><p>今月あとどれくらい使えるかを、ホームの作戦ボードで確認できます。</p></article>
+          <article class="card"><div class="cardIcon">＋</div><h3>ざっくり入力</h3><p>生活・楽しみ・やりたいことから選び、金額ボタンで支出を反映します。</p></article>
+          <article class="card"><div class="cardIcon">%</div><h3>カテゴリ別に見る</h3><p>生活費・楽しみ用・やりたいことの使用率を、%とバーで一覧できます。</p></article>
+          <article class="card"><div class="cardIcon">✓</div><h3>今月の準備</h3><p>収入、固定費、生活費、楽しみ用、やりたいことを先に整理できます。</p></article>
+          <article class="card"><div class="cardIcon">□</div><h3>画像で保存</h3><p>家族に見せる用や自分用に、今月の状況を画像として保存できます。</p></article>
+          <article class="card"><div class="cardIcon">β</div><h3>公開βとして改善中</h3><p>本格的な家計簿ではなく、安心して使える作戦ボードとして調整中です。</p></article>
+        </div>
+      </section>
+
+      <section class="section panel" id="howto">
+        <h2 class="sectionTitle">使い方</h2>
+        <p class="sectionLead">最初に少し準備して、あとは必要なときにざっくり入力するだけです。</p>
+        <div class="steps">
+          <div class="step"><b>1</b><strong>今月の準備</strong><p class="mockLabel">収入と固定費を入れる</p></div>
+          <div class="step"><b>2</b><strong>作戦を決める</strong><p class="mockLabel">生活費と楽しみ用を分ける</p></div>
+          <div class="step"><b>3</b><strong>ざっくり入力</strong><p class="mockLabel">使った分だけ反映する</p></div>
+          <div class="step"><b>4</b><strong>残りを見る</strong><p class="mockLabel">今月の安心ラインを確認する</p></div>
+        </div>
+        <div class="note">細かく完璧に記録するより、「今月まだ大丈夫か」を判断するためのアプリです。</div>
+      </section>
+
+      <section class="section panel" id="contact">
+        <h2 class="sectionTitle">問い合わせ・フィードバック</h2>
+        <div class="contactBox">
+          <div>
+            <strong>現在は公開βのため、問い合わせ導線は準備中です。</strong>
+            <p>まずはアプリ本体を使いながら、分かりにくい点・壊れている点・欲しい改善点を整理していきます。</p>
+          </div>
+          <a class="button secondary" href="https://figiecc.github.io/hanemy/">アプリを開く</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Hanemy β official light page</span>
+      <span class="tm">Hanemy™</span>
+    </footer>
+  </div>
+
+  <script>
+    (() => {
+      const links = document.querySelectorAll('[data-scroll]');
+      const getHeaderHeight = () => {
+        const header = document.querySelector('header');
+        return header ? header.getBoundingClientRect().height + 22 : 0;
+      };
+      links.forEach((link) => {
+        link.addEventListener('click', (event) => {
+          const id = link.getAttribute('data-scroll');
+          const target = id === 'top' ? document.getElementById('top') : document.getElementById(id);
+          if (!target) return;
+          event.preventDefault();
+          const y = target.getBoundingClientRect().top + window.scrollY - getHeaderHeight();
+          window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+          history.replaceState(null, '', id === 'top' ? location.pathname : `#${id}`);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
