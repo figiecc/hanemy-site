@@ -160,6 +160,48 @@
     footer{margin-top:28px;text-align:center;color:var(--muted);font-size:.82rem;font-weight:800}.tm{display:block;margin-top:4px;font-weight:950}
     [id]{scroll-margin-top:84px}
 
+
+    .installGuide{
+      margin-top:22px;
+      padding:22px;
+      border-radius:var(--radius);
+      background:rgba(255,253,248,.78);
+      border:1px solid var(--line);
+      box-shadow:0 10px 28px rgba(102,63,25,.06);
+    }
+    .installGuide h2{
+      margin:0 0 8px;
+      font-size:1.22rem;
+      letter-spacing:-.03em;
+    }
+    .installGuide p{
+      margin:0;
+      color:var(--muted);
+      font-weight:750;
+    }
+    .installSteps{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:14px;
+    }
+    .installMini{
+      border-radius:18px;
+      background:#fff8ef;
+      border:1px solid var(--line);
+      padding:13px;
+    }
+    .installMini strong{
+      display:block;
+      margin-bottom:4px;
+    }
+    .installMini span{
+      display:block;
+      color:var(--muted);
+      font-size:.9rem;
+      font-weight:750;
+    }
+
     .contactForm{
       display:grid;
       gap:12px;
@@ -227,7 +269,7 @@
     .copyBox.show{display:block}
 
     @media(max-width:760px){
-      .page{width:min(100% - 22px,520px);padding-top:8px}.nav{gap:4px;font-size:.78rem}.nav a{padding:7px 7px}.nav a.optional{display:none}.hero{grid-template-columns:1fr}.heroCard{padding:26px 22px}.sections{grid-template-columns:1fr}.previewCard{order:-1}.phone{max-width:100%}.actions .button{width:100%}.conceptList,.steps,.contactGrid{grid-template-columns:1fr}header{margin-bottom:14px}
+      .page{width:min(100% - 22px,520px);padding-top:8px}.nav{gap:4px;font-size:.78rem}.nav a{padding:7px 7px}.nav a.optional{display:none}.hero{grid-template-columns:1fr}.heroCard{padding:26px 22px}.sections{grid-template-columns:1fr}.previewCard{order:-1}.phone{max-width:100%}.actions .button{width:100%}.conceptList,.steps,.contactGrid,.installSteps{grid-template-columns:1fr}header{margin-bottom:14px}
     }
   </style>
 </head>
@@ -299,6 +341,22 @@
         <p class="eyebrow">HOW TO USE</p>
         <h2>使い方は、4ステップ。</h2>
         <div class="steps"><div class="step"><span>1</span><strong>今月の準備</strong><p>収入と固定費を入れます。</p></div><div class="step"><span>2</span><strong>作戦を決める</strong><p>生活費と楽しみ用を分けます。</p></div><div class="step"><span>3</span><strong>ざっくり入力</strong><p>使った分だけ軽く記録します。</p></div><div class="step"><span>4</span><strong>残りを見る</strong><p>今月の現在地を確認します。</p></div></div>
+      </section>
+
+      <section class="installGuide" id="install">
+        <p class="eyebrow">INSTALL</p>
+        <h2>スマホのホーム画面に追加できます。</h2>
+        <p>毎日開くなら、ブラウザのブックマークよりホーム画面追加が便利です。アプリのようにすぐ開けます。</p>
+        <div class="installSteps">
+          <div class="installMini">
+            <strong>iPhone</strong>
+            <span>Safariでアプリを開く → 共有ボタン → ホーム画面に追加</span>
+          </div>
+          <div class="installMini">
+            <strong>Android</strong>
+            <span>Chromeでアプリを開く → メニュー → ホーム画面に追加 / アプリをインストール</span>
+          </div>
+        </div>
       </section>
 
       <section class="contact" id="contact">

@@ -1,4 +1,4 @@
-# Hanemy Light Homepage v0.7
+# Hanemy Light Homepage v0.8
 
 Hanemy（ハネミー）の公開β向け軽量ホームページです。
 
@@ -69,3 +69,10 @@ https://figiecc.github.io/hanemy/
 ```js
 const CONTACT_EMAIL = 'your-email@example.com';
 ```
+
+
+## v0.8 install guide
+
+- ホームページに「スマホのホーム画面に追加できます」案内を追加
+- iPhone / Android それぞれの追加手順を短く明記
+- 目立ちすぎない補助セクションとして配置
