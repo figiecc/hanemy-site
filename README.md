@@ -1,4 +1,4 @@
-# Hanemy Light Homepage v0.6.1
+# Hanemy Light Homepage v0.6.2
 
 Hanemy（ハネミー）の公開β向け軽量ホームページです。
 
@@ -46,3 +46,10 @@ https://figiecc.github.io/hanemy/
 
 - ロゴ画像の背景に見えていたチェック柄を除去
 - ホームページで使うロゴ・アイコン・マスコット画像を差し替え
+
+
+## v0.6.2 favicon hotfix
+
+- ブラウザタブに表示される `favicon.png` を新ブランドアイコンへ差し替え
+- `icon-192.png` / `icon-512.png` も新ブランドアイコンへ差し替え
+- favicon参照にキャッシュ対策のクエリを追加
