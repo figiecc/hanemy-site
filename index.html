@@ -4,24 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>Hanemy｜今月を安心して過ごすためのお金の作戦ボード</title>
-  <meta name="description" content="Hanemy（ハネミー）は、家計簿ではなく、今月を安心して過ごすためのお金の作戦ボードです。今月の残り、生活費、楽しみ用を少ない操作で確認できます。">
+  <meta name="description" content="Hanemy（ハネミー）は、家計簿ではなく、今月を安心して過ごすためのお金の作戦ボードです。">
   <meta name="theme-color" content="#fff7ec">
   <link rel="icon" href="./favicon.png">
   <link rel="apple-touch-icon" href="./icon-192.png">
   <style>
     :root{
       --bg:#fff7ec;
+      --bg2:#fff1dc;
       --surface:#fffdf8;
-      --surface2:#fff8ef;
-      --mint:#5fc5ad;
-      --mint2:#80d4c0;
-      --coral:#f46f6b;
-      --coral2:#ff8a84;
-      --ink:#30383a;
-      --muted:#6f7778;
-      --line:rgba(48,56,58,.10);
-      --shadow:0 22px 56px rgba(75,61,43,.13);
-      --softShadow:0 12px 28px rgba(75,61,43,.08);
+      --soft:#fff8ef;
+      --accent:#f47f14;
+      --accent2:#ff9a22;
+      --ink:#2f2118;
+      --muted:#7b6859;
+      --line:rgba(93,63,38,.10);
+      --shadow:0 22px 56px rgba(102,63,25,.13);
       --radius:28px;
     }
     *{box-sizing:border-box}
@@ -31,40 +29,37 @@
       font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;
       color:var(--ink);
       background:
-        radial-gradient(circle at 12% 0%, rgba(255,255,255,.9) 0 145px, transparent 146px),
-        radial-gradient(circle at 88% 14%, rgba(95,197,173,.13) 0 210px, transparent 211px),
-        linear-gradient(180deg,var(--bg),#fff3e4 72%,#fffaf3);
-      line-height:1.75;
+        radial-gradient(circle at 18% 0%, rgba(255,255,255,.82) 0 140px, transparent 141px),
+        linear-gradient(180deg,var(--bg),#fff3e4);
+      line-height:1.7;
     }
     a{color:inherit}
     .page{
-      width:min(1080px,calc(100% - 28px));
+      width:min(1040px,calc(100% - 28px));
       margin:0 auto;
-      padding:18px 0 46px;
+      padding:22px 0 44px;
     }
     header{
       position:sticky;
-      top:10px;
-      z-index:10;
+      top:0;
+      z-index:20;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:14px;
-      margin-bottom:20px;
-      padding:10px 12px;
-      border:1px solid var(--line);
-      border-radius:24px;
-      background:rgba(255,253,248,.78);
+      gap:16px;
+      margin:0 -6px 22px;
+      padding:10px 6px;
       backdrop-filter:blur(16px);
-      box-shadow:0 10px 24px rgba(75,61,43,.07);
+      background:rgba(255,247,236,.78);
+      border-bottom:1px solid rgba(93,63,38,.06);
     }
     .brand{
       display:flex;
       align-items:center;
       gap:10px;
-      min-width:max-content;
       font-weight:950;
       letter-spacing:.02em;
+      text-decoration:none;
     }
     .brand img{
       width:42px;
@@ -72,40 +67,32 @@
       border-radius:14px;
       object-fit:cover;
       background:#fff;
-      box-shadow:0 8px 18px rgba(75,61,43,.10);
+      box-shadow:0 8px 18px rgba(102,63,25,.10);
     }
     .nav{
       display:flex;
-      gap:4px;
+      gap:8px;
       align-items:center;
-      justify-content:flex-end;
-      font-size:.9rem;
-      font-weight:900;
+      font-size:.88rem;
+      font-weight:850;
       color:var(--muted);
-      overflow-x:auto;
-      scrollbar-width:none;
-    }
-    .nav::-webkit-scrollbar{display:none}
-    .nav a{
-      text-decoration:none;
-      padding:9px 11px;
-      border-radius:999px;
       white-space:nowrap;
     }
-    .nav a:hover{background:rgba(95,197,173,.12);color:var(--ink)}
-    .nav .appLink{
-      color:#fff;
-      background:linear-gradient(135deg,var(--mint2),var(--mint));
-      box-shadow:0 8px 18px rgba(95,197,173,.24);
+    .nav a{
+      text-decoration:none;
+      padding:8px 10px;
+      border-radius:999px;
     }
+    .nav a:hover{background:rgba(255,255,255,.72);color:var(--ink)}
+    .nav .appLink{color:#fff;background:linear-gradient(135deg,var(--accent2),var(--accent));}
     .hero{
       display:grid;
       grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);
       gap:22px;
       align-items:stretch;
-      margin-top:10px;
+      margin-top:8px;
     }
-    .heroCard,.previewCard,.card,.panel{
+    .heroCard,.previewCard,.card,.concept,.howto,.contact{
       background:rgba(255,253,248,.88);
       border:1px solid var(--line);
       border-radius:var(--radius);
@@ -116,21 +103,16 @@
       display:grid;
       align-content:center;
     }
-    .logoWide{
-      width:min(460px,100%);
-      margin:0 0 18px;
-      display:block;
-    }
     .eyebrow{
       margin:0 0 8px;
-      color:var(--coral);
+      color:var(--accent);
       font-size:.78rem;
       font-weight:950;
-      letter-spacing:.1em;
+      letter-spacing:.09em;
     }
     h1{
       margin:0;
-      font-size:clamp(2.05rem,6vw,4.15rem);
+      font-size:clamp(2rem,6vw,4.1rem);
       line-height:1.08;
       letter-spacing:-.06em;
     }
@@ -138,135 +120,84 @@
       margin:18px 0 0;
       color:var(--muted);
       font-size:1.05rem;
-      font-weight:760;
+      font-weight:700;
     }
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:26px;
-    }
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
     .button{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       min-height:50px;
       padding:0 18px;
-      border-radius:19px;
+      border-radius:20px;
       text-decoration:none;
       font-weight:950;
       border:1px solid var(--line);
       cursor:pointer;
     }
-    .primary{
-      color:#fff;
-      background:linear-gradient(135deg,var(--coral2),var(--coral));
-      box-shadow:0 10px 20px rgba(244,111,107,.20);
-      border-color:transparent;
-    }
-    .secondary{background:rgba(255,255,255,.82);color:var(--ink)}
+    .primary{color:#fff;background:linear-gradient(135deg,var(--accent2),var(--accent));box-shadow:0 10px 20px rgba(242,138,28,.18);border-color:transparent}
+    .secondary{background:rgba(255,255,255,.76);color:var(--ink)}
     .previewCard{
-      padding:16px;
-      background:
-        radial-gradient(circle at 86% 8%, rgba(255,255,255,.45) 0 80px, transparent 81px),
-        linear-gradient(145deg,#f8fffb,#fff2e8);
+      padding:18px;
+      background:radial-gradient(circle at 86% 8%, rgba(255,255,255,.42) 0 80px, transparent 81px),linear-gradient(145deg,#fff7e8,#ffe3b6);
     }
-    .phone{
-      max-width:360px;
-      margin:0 auto;
-      border-radius:34px;
-      background:#fffdf8;
-      padding:16px;
-      border:1px solid rgba(48,56,58,.10);
-      box-shadow:0 20px 42px rgba(75,61,43,.14);
-    }
+    .phone{max-width:360px;margin:0 auto;border-radius:34px;background:#fffdf8;padding:16px;border:1px solid rgba(93,63,38,.10);box-shadow:0 20px 42px rgba(102,63,25,.14)}
     .phoneTop{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px}
-    .pill{border-radius:999px;background:rgba(95,197,173,.13);color:#319982;padding:5px 10px;font-size:.72rem;font-weight:950;white-space:nowrap}
-    .mockBoard{border-radius:24px;padding:18px 16px;background:linear-gradient(145deg,#eefbf7,#fff4ed);border:1px solid rgba(95,197,173,.22)}
+    .logoWide{display:block;width:min(210px,70%);height:auto;margin:0 auto 14px;filter:drop-shadow(0 10px 18px rgba(102,63,25,.12))}
+    .pill{border-radius:999px;background:#fff1dc;color:var(--accent);padding:5px 10px;font-size:.72rem;font-weight:950}
+    .mockBoard{border-radius:24px;padding:18px 16px;background:linear-gradient(145deg,#fff7e8,#ffe3b6);border:1px solid rgba(242,138,28,.22)}
     .mockLabel{color:var(--muted);font-size:.8rem;font-weight:950}
     .mockMoney{display:block;font-size:2.55rem;line-height:1;letter-spacing:-.06em;font-weight:950;margin-top:4px}
     .miniGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-    .mini{border-radius:18px;background:rgba(255,255,255,.72);border:1px solid rgba(48,56,58,.08);padding:10px}
-    .mini strong{display:block;font-size:1.05rem}
-    .section{scroll-margin-top:94px;margin-top:22px}
-    .sectionTitle{margin:0 0 12px;font-size:1.55rem;letter-spacing:-.04em}
-    .sectionLead{margin:0 0 16px;color:var(--muted);font-weight:760}
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .card{padding:22px;box-shadow:var(--softShadow)}
-    .cardIcon{width:42px;height:42px;border-radius:16px;display:grid;place-items:center;background:rgba(95,197,173,.14);color:#319982;font-weight:950;margin-bottom:10px}
-    .card:nth-child(2) .cardIcon{background:rgba(244,111,107,.12);color:var(--coral)}
-    .card h3{margin:0 0 8px;font-size:1.12rem;letter-spacing:-.03em}
-    .card p{margin:0;color:var(--muted);font-weight:720;font-size:.94rem}
-    .panel{padding:26px;box-shadow:var(--softShadow)}
-    .conceptGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-    .point{border-radius:22px;background:var(--surface2);border:1px solid var(--line);padding:18px}
-    .point strong{display:block;margin-bottom:4px}
-    .point span{display:block;color:var(--muted);font-weight:720;font-size:.94rem}
-    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
-    .step{padding:18px;border-radius:22px;background:#fff;border:1px solid var(--line)}
-    .step b{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:999px;background:rgba(244,111,107,.12);color:var(--coral);margin-bottom:8px}
-    .note{margin-top:14px;padding:16px 18px;border-radius:22px;background:rgba(95,197,173,.11);border:1px solid rgba(95,197,173,.18);color:#3f6f67;font-weight:800}
-    .contactBox{display:flex;align-items:center;justify-content:space-between;gap:18px;border-radius:24px;background:linear-gradient(145deg,#fff,#fff7ef);border:1px solid var(--line);padding:20px}
-    .contactBox p{margin:4px 0 0;color:var(--muted);font-weight:720}
-    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:.82rem;font-weight:800}
-    .tm{display:block;margin-top:4px;font-weight:950;color:var(--ink)}
-    @media(max-width:840px){
-      .hero{grid-template-columns:1fr}.previewCard{order:-1}.cards{grid-template-columns:1fr}.conceptGrid{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}
-    }
-    @media(max-width:620px){
-      .page{width:min(100% - 22px,520px);padding-top:12px}
-      header{top:6px;align-items:flex-start;flex-direction:column;border-radius:22px}
-      .nav{width:100%;justify-content:flex-start;font-size:.84rem}
-      .heroCard{padding:25px 21px}.phone{max-width:100%}.actions .button{width:100%}.steps{grid-template-columns:1fr}.contactBox{align-items:stretch;flex-direction:column}.contactBox .button{width:100%}
+    .mini{border-radius:18px;background:rgba(255,255,255,.68);border:1px solid rgba(93,63,38,.08);padding:10px}.mini strong{display:block;font-size:1.05rem}
+    .sections{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}.card{padding:22px;box-shadow:0 10px 28px rgba(102,63,25,.07)}.card h2{margin:0 0 8px;font-size:1.14rem;letter-spacing:-.03em}.card p{margin:0;color:var(--muted);font-weight:700;font-size:.94rem}
+    .concept,.howto,.contact{margin-top:22px;padding:26px;box-shadow:0 10px 28px rgba(102,63,25,.07)}
+    .concept h2,.howto h2,.contact h2{margin:0 0 10px;font-size:1.42rem;letter-spacing:-.04em}.concept p,.contact p{margin:0;color:var(--muted);font-weight:750}
+    .conceptList{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.conceptItem{border-radius:20px;background:#fff8ef;border:1px solid var(--line);padding:14px;font-weight:900;color:var(--ink)}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.step{border-radius:20px;background:#fff8ef;border:1px solid var(--line);padding:14px}.step span{display:inline-flex;width:28px;height:28px;border-radius:999px;align-items:center;justify-content:center;background:#ffe3b6;color:var(--accent);font-weight:950;margin-bottom:8px}.step strong{display:block}.step p{margin:4px 0 0;color:var(--muted);font-size:.9rem;font-weight:700}
+    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:.82rem;font-weight:800}.tm{display:block;margin-top:4px;font-weight:950}
+    [id]{scroll-margin-top:84px}
+    @media(max-width:760px){
+      .page{width:min(100% - 22px,520px);padding-top:8px}.nav{gap:4px;font-size:.78rem}.nav a{padding:7px 7px}.nav a.optional{display:none}.hero{grid-template-columns:1fr}.heroCard{padding:26px 22px}.sections{grid-template-columns:1fr}.previewCard{order:-1}.phone{max-width:100%}.actions .button{width:100%}.conceptList,.steps{grid-template-columns:1fr}header{margin-bottom:14px}
     }
   </style>
 </head>
 <body>
   <div class="page">
     <header>
-      <a class="brand" href="#top" data-scroll="top" aria-label="Hanemyトップへ">
-        <img src="./assets/logo.png" alt="Hanemy">
+      <a class="brand" href="#top" data-scroll="top">
+        <img src="./logo.png" alt="Hanemy" onerror="this.onerror=null;this.src='./assets/logo.png';">
         <span>Hanemy™</span>
       </a>
       <nav class="nav" aria-label="ページ内メニュー">
         <a href="#concept" data-scroll="concept">コンセプト</a>
         <a href="#features" data-scroll="features">できること</a>
-        <a href="#howto" data-scroll="howto">使い方</a>
-        <a href="#contact" data-scroll="contact">問い合わせ</a>
+        <a class="optional" href="#howto" data-scroll="howto">使い方</a>
         <a class="appLink" href="https://figiecc.github.io/hanemy/">アプリを開く</a>
       </nav>
     </header>
 
     <main id="top">
-      <section class="hero" aria-label="Hanemy紹介">
+      <section class="hero">
         <div class="heroCard">
-          <img class="logoWide" src="./assets/logo.png" alt="Hanemy ハネミー">
           <p class="eyebrow">お金の作戦ボード</p>
           <h1>今月を、安心して過ごす。</h1>
-          <p class="lead">
-            ハネミーは、細かく支出を記録する家計簿ではありません。<br>
-            生活費と楽しみ用を見える化して、今月あとどれくらい使えるかを少ない操作で確認するアプリです。
-          </p>
+          <p class="lead">ハネミーは、細かく支出を記録する家計簿ではありません。生活費と楽しみ用を見える化して、今月あとどれくらい使えるかを少ない操作で確認するアプリです。</p>
           <div class="actions">
             <a class="button primary" href="https://figiecc.github.io/hanemy/">アプリを開く</a>
             <a class="button secondary" href="#concept" data-scroll="concept">ハネミーとは</a>
           </div>
         </div>
-
         <div class="previewCard" aria-label="アプリ画面イメージ">
           <div class="phone">
-            <div class="phoneTop">
-              <strong>今月の作戦ボード</strong>
-              <span class="pill">公開β</span>
-            </div>
+            <img class="logoWide" src="./logo.png" alt="Hanemy ハネミー" onerror="this.onerror=null;this.src='./assets/logo.png';">
+            <div class="phoneTop"><strong>今月の作戦ボード</strong><span class="pill">楽しみ優先</span></div>
             <div class="mockBoard">
-              <span class="mockLabel">今月の残り</span>
-              <strong class="mockMoney">42,000円</strong>
-              <p class="mockLabel">生活と楽しみに使える、今月の現在地です。</p>
+              <span class="mockLabel">今月の残り</span><strong class="mockMoney">42,000円</strong><p class="mockLabel">生活と楽しみに使える、今月の現在地です。</p>
               <div class="miniGrid">
                 <div class="mini"><span class="mockLabel">今日の目安</span><strong>1,400円</strong></div>
-                <div class="mini"><span class="mockLabel">生活費</span><strong>24,000円</strong></div>
                 <div class="mini"><span class="mockLabel">楽しみ用</span><strong>18,000円</strong></div>
+                <div class="mini"><span class="mockLabel">生活費</span><strong>24,000円</strong></div>
                 <div class="mini"><span class="mockLabel">残せそう</span><strong>12,000円</strong></div>
               </div>
             </div>
@@ -274,81 +205,52 @@
         </div>
       </section>
 
-      <section class="section panel" id="concept">
-        <h2 class="sectionTitle">かわいい家計簿ではなく、やさしい作戦ボード。</h2>
-        <p class="sectionLead">
-          ハネミーが見たいのは「過去の支出の細かい内訳」よりも、「今月をどう安心して過ごすか」です。
-        </p>
-        <div class="conceptGrid">
-          <div class="point"><strong>家計簿ではない</strong><span>レシート管理や細かい店名入力を主役にしません。</span></div>
-          <div class="point"><strong>今月の判断を助ける</strong><span>生活費・楽しみ用・やりたいことを分けて、使える余白を見ます。</span></div>
-          <div class="point"><strong>入力はざっくり</strong><span>毎日完璧に記録するより、少ない操作で現在地を更新します。</span></div>
-          <div class="point"><strong>安心を優先</strong><span>かわいさは添える程度。見やすさと分かりやすさを中心にします。</span></div>
-        </div>
+      <section class="concept" id="concept">
+        <p class="eyebrow">CONCEPT</p>
+        <h2>かわいい家計簿ではなく、やさしい作戦ボード。</h2>
+        <p>ハネミーは「何にいくら使ったか」を細かく追うよりも、「今月をどう過ごすか」を先に決めるためのアプリです。生活費を守りながら、楽しみも諦めない。そのための小さな作戦ボードを目指しています。</p>
+        <div class="conceptList"><div class="conceptItem">家計簿ではない</div><div class="conceptItem">今月の判断を助ける</div><div class="conceptItem">入力はざっくり</div><div class="conceptItem">安心を優先</div></div>
       </section>
 
-      <section class="section" id="features">
-        <h2 class="sectionTitle">できること</h2>
-        <p class="sectionLead">公開βでは、今月のお金の作戦を立てて、ざっくり更新して、必要なら共有できます。</p>
-        <div class="cards">
-          <article class="card"><div class="cardIcon">¥</div><h3>今月の残りを確認</h3><p>今月あとどれくらい使えるかを、ホームの作戦ボードで確認できます。</p></article>
-          <article class="card"><div class="cardIcon">＋</div><h3>ざっくり入力</h3><p>生活・楽しみ・やりたいことから選び、金額ボタンで支出を反映します。</p></article>
-          <article class="card"><div class="cardIcon">%</div><h3>カテゴリ別に見る</h3><p>生活費・楽しみ用・やりたいことの使用率を、%とバーで一覧できます。</p></article>
-          <article class="card"><div class="cardIcon">✓</div><h3>今月の準備</h3><p>収入、固定費、生活費、楽しみ用、やりたいことを先に整理できます。</p></article>
-          <article class="card"><div class="cardIcon">□</div><h3>画像で保存</h3><p>家族に見せる用や自分用に、今月の状況を画像として保存できます。</p></article>
-          <article class="card"><div class="cardIcon">β</div><h3>公開βとして改善中</h3><p>本格的な家計簿ではなく、安心して使える作戦ボードとして調整中です。</p></article>
-        </div>
+      <section class="sections" id="features">
+        <article class="card"><h2>今月の残りを確認</h2><p>開いた瞬間に、今月あとどれくらい安心して使えるかを確認できます。</p></article>
+        <article class="card"><h2>ざっくり入力</h2><p>細かい店名やメモではなく、使った分だけ作戦ボードに反映します。</p></article>
+        <article class="card"><h2>カテゴリ別に見る</h2><p>生活費・楽しみ用・やりたいことを一覧で確認し、使用率も見られます。</p></article>
+        <article class="card"><h2>今月の準備</h2><p>収入、固定費、生活費、楽しみ用を決めて、今月の方針を作ります。</p></article>
+        <article class="card"><h2>画像で保存</h2><p>家族に見せたり、自分用に今月の作戦を画像として残せます。</p></article>
+        <article class="card"><h2>公開βとして改善中</h2><p>現在は公開βです。軽く使える形を保ちながら、少しずつ磨いています。</p></article>
       </section>
 
-      <section class="section panel" id="howto">
-        <h2 class="sectionTitle">使い方</h2>
-        <p class="sectionLead">最初に少し準備して、あとは必要なときにざっくり入力するだけです。</p>
-        <div class="steps">
-          <div class="step"><b>1</b><strong>今月の準備</strong><p class="mockLabel">収入と固定費を入れる</p></div>
-          <div class="step"><b>2</b><strong>作戦を決める</strong><p class="mockLabel">生活費と楽しみ用を分ける</p></div>
-          <div class="step"><b>3</b><strong>ざっくり入力</strong><p class="mockLabel">使った分だけ反映する</p></div>
-          <div class="step"><b>4</b><strong>残りを見る</strong><p class="mockLabel">今月の安心ラインを確認する</p></div>
-        </div>
-        <div class="note">細かく完璧に記録するより、「今月まだ大丈夫か」を判断するためのアプリです。</div>
+      <section class="howto" id="howto">
+        <p class="eyebrow">HOW TO USE</p>
+        <h2>使い方は、4ステップ。</h2>
+        <div class="steps"><div class="step"><span>1</span><strong>今月の準備</strong><p>収入と固定費を入れます。</p></div><div class="step"><span>2</span><strong>作戦を決める</strong><p>生活費と楽しみ用を分けます。</p></div><div class="step"><span>3</span><strong>ざっくり入力</strong><p>使った分だけ軽く記録します。</p></div><div class="step"><span>4</span><strong>残りを見る</strong><p>今月の現在地を確認します。</p></div></div>
       </section>
 
-      <section class="section panel" id="contact">
-        <h2 class="sectionTitle">問い合わせ・フィードバック</h2>
-        <div class="contactBox">
-          <div>
-            <strong>現在は公開βのため、問い合わせ導線は準備中です。</strong>
-            <p>まずはアプリ本体を使いながら、分かりにくい点・壊れている点・欲しい改善点を整理していきます。</p>
-          </div>
-          <a class="button secondary" href="https://figiecc.github.io/hanemy/">アプリを開く</a>
-        </div>
+      <section class="contact" id="contact">
+        <p class="eyebrow">CONTACT</p>
+        <h2>問い合わせ導線は準備中です。</h2>
+        <p>現在は公開βのため、外部フォームや本格的な問い合わせ導線はまだ置いていません。まずはアプリ本体を触れる状態にすることを優先しています。</p>
+        <div class="actions"><a class="button primary" href="https://figiecc.github.io/hanemy/">アプリを開く</a></div>
       </section>
     </main>
 
-    <footer>
-      <span>Hanemy β official light page</span>
-      <span class="tm">Hanemy™</span>
-    </footer>
+    <footer><span>Hanemy β official light page</span><span class="tm">Hanemy™</span></footer>
   </div>
-
   <script>
-    (() => {
-      const links = document.querySelectorAll('[data-scroll]');
-      const getHeaderHeight = () => {
+    document.querySelectorAll('[data-scroll]').forEach((link)=>{
+      link.addEventListener('click',(event)=>{
+        const id = link.getAttribute('data-scroll');
+        const target = id === 'top' ? document.getElementById('top') : document.getElementById(id);
+        if(!target) return;
+        event.preventDefault();
         const header = document.querySelector('header');
-        return header ? header.getBoundingClientRect().height + 22 : 0;
-      };
-      links.forEach((link) => {
-        link.addEventListener('click', (event) => {
-          const id = link.getAttribute('data-scroll');
-          const target = id === 'top' ? document.getElementById('top') : document.getElementById(id);
-          if (!target) return;
-          event.preventDefault();
-          const y = target.getBoundingClientRect().top + window.scrollY - getHeaderHeight();
-          window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
-          history.replaceState(null, '', id === 'top' ? location.pathname : `#${id}`);
-        });
+        const headerHeight = header ? header.offsetHeight + 14 : 0;
+        const top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+        window.scrollTo({ top, behavior:'smooth' });
+        history.replaceState(null, '', id === 'top' ? location.pathname : '#' + id);
       });
-    })();
+    });
   </script>
 </body>
 </html>
