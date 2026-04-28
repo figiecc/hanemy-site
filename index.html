@@ -1,489 +1,62 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>Hanemy｜今月を安心して過ごすためのお金の作戦ボード</title>
-  <meta name="description" content="Hanemy（ハネミー）は、家計簿ではなく、今月を安心して過ごすためのお金の作戦ボードです。">
-  <meta name="theme-color" content="#fff7ec">
-  <link rel="icon" href="./favicon.png?v=062">
-  <link rel="apple-touch-icon" href="./icon-192.png?v=062">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ハネミーは移動しました</title>
+  <meta name="robots" content="noindex" />
+  <meta http-equiv="refresh" content="0; url=https://figie.cc/hanemy/" />
+  <link rel="canonical" href="https://figie.cc/hanemy/" />
   <style>
-    :root{
-      --bg:#fff7ec;
-      --bg2:#fff1dc;
-      --surface:#fffdf8;
-      --soft:#fff8ef;
-      --accent:#f47f14;
-      --accent2:#ff9a22;
-      --ink:#2f2118;
-      --muted:#7b6859;
-      --line:rgba(93,63,38,.10);
-      --shadow:0 22px 56px rgba(102,63,25,.13);
-      --radius:28px;
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #fff7ed;
+      color: #3f2a1d;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;
-      color:var(--ink);
-      background:
-        radial-gradient(circle at 18% 0%, rgba(255,255,255,.82) 0 140px, transparent 141px),
-        linear-gradient(180deg,var(--bg),#fff3e4);
-      line-height:1.7;
+    main {
+      width: min(92vw, 520px);
+      padding: 32px;
+      border-radius: 24px;
+      background: #ffffff;
+      box-shadow: 0 20px 60px rgba(80, 45, 20, 0.12);
+      text-align: center;
     }
-    a{color:inherit}
-    .page{
-      width:min(1040px,calc(100% - 28px));
-      margin:0 auto;
-      padding:22px 0 44px;
+    h1 {
+      margin: 0 0 12px;
+      font-size: 24px;
     }
-    header{
-      position:sticky;
-      top:0;
-      z-index:20;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin:0 -6px 22px;
-      padding:10px 6px;
-      backdrop-filter:blur(16px);
-      background:rgba(255,247,236,.78);
-      border-bottom:1px solid rgba(93,63,38,.06);
+    p {
+      line-height: 1.8;
+      margin: 0 0 20px;
+      color: #6b5a4d;
     }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:950;
-      letter-spacing:.02em;
-      text-decoration:none;
-    }
-    .brand img{
-      width:42px;
-      height:42px;
-      border-radius:14px;
-      object-fit:cover;
-      background:transparent;
-      box-shadow:none;
-      border-radius:0;
-      object-fit:contain;
-    }
-    .nav{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      font-size:.88rem;
-      font-weight:850;
-      color:var(--muted);
-      white-space:nowrap;
-    }
-    .nav a{
-      text-decoration:none;
-      padding:8px 10px;
-      border-radius:999px;
-    }
-    .nav a:hover{background:rgba(255,255,255,.72);color:var(--ink)}
-    .nav .appLink{color:#fff;background:linear-gradient(135deg,var(--accent2),var(--accent));}
-    .hero{
-      display:grid;
-      grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);
-      gap:22px;
-      align-items:stretch;
-      margin-top:8px;
-    }
-    .heroCard,.previewCard,.card,.concept,.howto,.contact{
-      background:rgba(255,253,248,.88);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-    }
-    .heroCard{
-      padding:34px;
-      display:grid;
-      align-content:center;
-    }
-    .eyebrow{
-      margin:0 0 8px;
-      color:var(--accent);
-      font-size:.78rem;
-      font-weight:950;
-      letter-spacing:.09em;
-    }
-    h1{
-      margin:0;
-      font-size:clamp(2rem,6vw,4.1rem);
-      line-height:1.08;
-      letter-spacing:-.06em;
-    }
-    .lead{
-      margin:18px 0 0;
-      color:var(--muted);
-      font-size:1.05rem;
-      font-weight:700;
-    }
-    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
-    .button{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:50px;
-      padding:0 18px;
-      border-radius:20px;
-      text-decoration:none;
-      font-weight:950;
-      border:1px solid var(--line);
-      cursor:pointer;
-    }
-    .primary{color:#fff;background:linear-gradient(135deg,var(--accent2),var(--accent));box-shadow:0 10px 20px rgba(242,138,28,.18);border-color:transparent}
-    .secondary{background:rgba(255,255,255,.76);color:var(--ink)}
-    .previewCard{
-      padding:18px;
-      background:radial-gradient(circle at 86% 8%, rgba(255,255,255,.42) 0 80px, transparent 81px),linear-gradient(145deg,#fff7e8,#ffe3b6);
-    }
-    .phone{max-width:360px;margin:0 auto;border-radius:34px;background:#fffdf8;padding:16px;border:1px solid rgba(93,63,38,.10);box-shadow:0 20px 42px rgba(102,63,25,.14)}
-    .phoneTop{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px}
-    .logoWide{display:block;width:min(210px,70%);height:auto;margin:0 auto 14px;filter:drop-shadow(0 10px 18px rgba(102,63,25,.12))}
-    .pill{border-radius:999px;background:#fff1dc;color:var(--accent);padding:5px 10px;font-size:.72rem;font-weight:950}
-    .mockBoard{border-radius:24px;padding:18px 16px;background:linear-gradient(145deg,#fff7e8,#ffe3b6);border:1px solid rgba(242,138,28,.22)}
-    .mockLabel{color:var(--muted);font-size:.8rem;font-weight:950}
-    .mockMoney{display:block;font-size:2.55rem;line-height:1;letter-spacing:-.06em;font-weight:950;margin-top:4px}
-    .miniGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-    .mini{border-radius:18px;background:rgba(255,255,255,.68);border:1px solid rgba(93,63,38,.08);padding:10px}.mini strong{display:block;font-size:1.05rem}
-    .sections{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}.card{padding:22px;box-shadow:0 10px 28px rgba(102,63,25,.07)}.card h2{margin:0 0 8px;font-size:1.14rem;letter-spacing:-.03em}.card p{margin:0;color:var(--muted);font-weight:700;font-size:.94rem}
-    .concept,.howto,.contact{margin-top:22px;padding:26px;box-shadow:0 10px 28px rgba(102,63,25,.07)}
-    .concept h2,.howto h2,.contact h2{margin:0 0 10px;font-size:1.42rem;letter-spacing:-.04em}.concept p,.contact p{margin:0;color:var(--muted);font-weight:750}
-    .conceptList{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.conceptItem{border-radius:20px;background:#fff8ef;border:1px solid var(--line);padding:14px;font-weight:900;color:var(--ink)}
-    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.step{border-radius:20px;background:#fff8ef;border:1px solid var(--line);padding:14px}.step span{display:inline-flex;width:28px;height:28px;border-radius:999px;align-items:center;justify-content:center;background:#ffe3b6;color:var(--accent);font-weight:950;margin-bottom:8px}.step strong{display:block}.step p{margin:4px 0 0;color:var(--muted);font-size:.9rem;font-weight:700}
-    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:.82rem;font-weight:800}.tm{display:block;margin-top:4px;font-weight:950}
-    [id]{scroll-margin-top:84px}
-
-
-    .installGuide{
-      margin-top:22px;
-      padding:22px;
-      border-radius:var(--radius);
-      background:rgba(255,253,248,.78);
-      border:1px solid var(--line);
-      box-shadow:0 10px 28px rgba(102,63,25,.06);
-    }
-    .installGuide h2{
-      margin:0 0 8px;
-      font-size:1.22rem;
-      letter-spacing:-.03em;
-    }
-    .installGuide p{
-      margin:0;
-      color:var(--muted);
-      font-weight:750;
-    }
-    .installSteps{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-      margin-top:14px;
-    }
-    .installMini{
-      border-radius:18px;
-      background:#fff8ef;
-      border:1px solid var(--line);
-      padding:13px;
-    }
-    .installMini strong{
-      display:block;
-      margin-bottom:4px;
-    }
-    .installMini span{
-      display:block;
-      color:var(--muted);
-      font-size:.9rem;
-      font-weight:750;
-    }
-
-    .contactForm{
-      display:grid;
-      gap:12px;
-      margin-top:18px;
-    }
-    .contactGrid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-    }
-    .contactField{
-      display:grid;
-      gap:6px;
-    }
-    .contactField label{
-      color:var(--muted);
-      font-size:.86rem;
-      font-weight:900;
-    }
-    .contactField input,
-    .contactField select,
-    .contactField textarea{
-      width:100%;
-      border:1px solid rgba(93,63,38,.14);
-      border-radius:17px;
-      background:rgba(255,255,255,.82);
-      padding:12px 13px;
-      color:var(--ink);
-      font:inherit;
-      font-weight:750;
-      outline:none;
-    }
-    .contactField textarea{
-      min-height:130px;
-      resize:vertical;
-      line-height:1.65;
-    }
-    .contactField input:focus,
-    .contactField select:focus,
-    .contactField textarea:focus{
-      border-color:rgba(244,127,20,.55);
-      box-shadow:0 0 0 4px rgba(244,127,20,.12);
-    }
-    .contactNote{
-      padding:12px 14px;
-      border-radius:18px;
-      background:#fff8ef;
-      border:1px solid var(--line);
-      color:var(--muted);
-      font-size:.9rem;
-      font-weight:750;
-    }
-    .copyBox{
-      width:100%;
-      min-height:96px;
-      border-radius:18px;
-      border:1px dashed rgba(93,63,38,.18);
-      background:rgba(255,255,255,.72);
-      padding:12px;
-      color:var(--muted);
-      font:inherit;
-      font-size:.86rem;
-      display:none;
-    }
-    .copyBox.show{display:block}
-
-    @media(max-width:760px){
-      .page{width:min(100% - 22px,520px);padding-top:8px}.nav{gap:4px;font-size:.78rem}.nav a{padding:7px 7px}.nav a.optional{display:none}.hero{grid-template-columns:1fr}.heroCard{padding:26px 22px}.sections{grid-template-columns:1fr}.previewCard{order:-1}.phone{max-width:100%}.actions .button{width:100%}.conceptList,.steps,.contactGrid,.installSteps{grid-template-columns:1fr}header{margin-bottom:14px}
+    a {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: #f59e0b;
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <header>
-      <a class="brand" href="#top" data-scroll="top">
-        <img src="./logo-icon-transparent.png" alt="Hanemy" onerror="this.onerror=null;this.src='./assets/logo-icon-transparent.png';">
-        <span>Hanemy™</span>
-      </a>
-      <nav class="nav" aria-label="ページ内メニュー">
-        <a href="#concept" data-scroll="concept">コンセプト</a>
-        <a href="#features" data-scroll="features">できること</a>
-        <a class="optional" href="#howto" data-scroll="howto">使い方</a>
-        <a class="optional" href="#contact" data-scroll="contact">問い合わせ</a>
-        <a class="appLink" href="https://figiecc.github.io/hanemy/">アプリを開く</a>
-      </nav>
-    </header>
+  <main>
+    <h1>ハネミーは移動しました</h1>
+    <p>
+      ハネミーの紹介ページは、Figie公式サイト内に移動しました。<br>
+      自動で移動しない場合は、下のボタンから開いてください。
+    </p>
+    <a href="https://figie.cc/hanemy/">新しいページを開く</a>
+  </main>
 
-    <main id="top">
-      <section class="hero">
-        <div class="heroCard">
-          <p class="eyebrow">お金の作戦ボード</p>
-          <h1>今月を、安心して過ごす。</h1>
-          <p class="lead">ハネミーは、細かく記録する家計簿ではありません。今月あと使えるお金を、少ない操作で確認するアプリです。</p>
-          <div class="actions">
-            <a class="button primary" href="https://figiecc.github.io/hanemy/">アプリを開く</a>
-            <a class="button secondary" href="#concept" data-scroll="concept">ハネミーとは</a>
-          </div>
-        </div>
-        <div class="previewCard" aria-label="アプリ画面イメージ">
-          <div class="phone">
-            <img class="logoWide" src="./logo-horizontal-transparent.png" alt="Hanemy ハネミー" onerror="this.onerror=null;this.src='./assets/logo-horizontal-transparent.png';">
-            <div class="phoneTop"><strong>今月の作戦ボード</strong><span class="pill">楽しみ優先</span></div>
-            <div class="mockBoard">
-              <span class="mockLabel">今月の残り</span><strong class="mockMoney">42,000円</strong><p class="mockLabel">生活と楽しみに使える、今月の現在地です。</p>
-              <div class="miniGrid">
-                <div class="mini"><span class="mockLabel">今日の目安</span><strong>1,400円</strong></div>
-                <div class="mini"><span class="mockLabel">楽しみ用</span><strong>18,000円</strong></div>
-                <div class="mini"><span class="mockLabel">生活費</span><strong>24,000円</strong></div>
-                <div class="mini"><span class="mockLabel">残せそう</span><strong>12,000円</strong></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="concept" id="concept">
-        <p class="eyebrow">CONCEPT</p>
-        <h2>家計簿ではなく、今月のお金の作戦ボード。</h2>
-        <p>ハネミーは、支出を細かく追うよりも「今月あとどれくらい使えるか」を見やすくするアプリです。生活費を守りながら、楽しみもあきらめない。そのための小さな作戦ボードです。</p>
-        
-        <div style="display:flex;justify-content:center;margin-top:18px;">
-          <img src="./mascot-transparent.png" alt="ハネミーのマスコット" style="width:min(180px,42vw);height:auto;display:block;">
-        </div>
-        <div class="conceptList"><div class="conceptItem">細かい家計簿ではない</div><div class="conceptItem">今月の使い方を決めやすい</div><div class="conceptItem">入力はざっくり</div><div class="conceptItem">安心を優先</div></div>
-      </section>
-
-      <section class="sections" id="features">
-        <article class="card"><h2>今月の残りを確認</h2><p>開いたらすぐに、今月あと使えるお金を確認できます。</p></article>
-        <article class="card"><h2>ざっくり入力</h2><p>細かい店名やメモは不要。使った金額だけを軽く入れます。</p></article>
-        <article class="card"><h2>カテゴリ別に見る</h2><p>生活費、楽しみ用、やりたいことを一覧で確認できます。</p></article>
-        <article class="card"><h2>今月の準備</h2><p>収入、固定費、生活費、楽しみ用を入れて、今月の見通しを作ります。</p></article>
-        <article class="card"><h2>画像で保存</h2><p>家族に見せたり、自分用に画像で残せます。</p></article>
-        <article class="card"><h2>公開βとして改善中</h2><p>現在は公開βです。使いやすさを見ながら少しずつ改善しています。</p></article>
-      </section>
-
-      <section class="howto" id="howto">
-        <p class="eyebrow">HOW TO USE</p>
-        <h2>使い方は4ステップ。</h2>
-        <div class="steps"><div class="step"><span>1</span><strong>今月の準備</strong><p>収入と固定費を入れます。</p></div><div class="step"><span>2</span><strong>使い方を決める</strong><p>生活費と楽しみ用を分けます。</p></div><div class="step"><span>3</span><strong>ざっくり入力</strong><p>使った分だけ軽く記録します。</p></div><div class="step"><span>4</span><strong>残りを確認</strong><p>今月あと使えるお金を確認します。</p></div></div>
-      </section>
-
-      <section class="installGuide" id="install">
-        <p class="eyebrow">INSTALL</p>
-        <h2>ホーム画面に追加できます。</h2>
-        <p>毎日見るなら、ホーム画面に追加するとすぐ開けます。</p>
-        <div class="installSteps">
-          <div class="installMini">
-            <strong>iPhone</strong>
-            <span>Safariでアプリを開く → 共有ボタン → ホーム画面に追加</span>
-          </div>
-          <div class="installMini">
-            <strong>Android</strong>
-            <span>Chromeでアプリを開く → メニュー → ホーム画面に追加 / アプリをインストール</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="contact" id="contact">
-        <p class="eyebrow">CONTACT</p>
-        <h2>お問い合わせ・フィードバック</h2>
-        <p>ハネミーは現在、公開βとして改善中です。不具合や分かりにくいところがあれば送ってください。</p>
-
-        <form class="contactForm" id="contactForm">
-          <div class="contactGrid">
-            <div class="contactField">
-              <label for="contactName">お名前（任意）</label>
-              <input id="contactName" name="name" autocomplete="name" placeholder="未入力でも大丈夫です">
-            </div>
-            <div class="contactField">
-              <label for="contactReply">返信先（任意）</label>
-              <input id="contactReply" name="reply" type="email" autocomplete="email" placeholder="返信が必要な場合だけ">
-            </div>
-          </div>
-
-          <div class="contactGrid">
-            <div class="contactField">
-              <label for="contactType">内容の種類</label>
-              <select id="contactType" name="type">
-                <option>不具合</option>
-                <option>使いにくいところ</option>
-                <option>欲しい機能</option>
-                <option>感想</option>
-                <option>その他</option>
-              </select>
-            </div>
-            <div class="contactField">
-              <label for="contactDevice">使用端末</label>
-              <select id="contactDevice" name="device">
-                <option>iPhone</option>
-                <option>Android</option>
-                <option>PC</option>
-                <option>その他</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="contactField">
-            <label for="contactBody">内容</label>
-            <textarea id="contactBody" name="body" placeholder="気づいたことをそのまま書いてください。"></textarea>
-          </div>
-
-          <div class="contactNote">
-            入力内容はこのページには保存されません。送信ボタンを押すとメールアプリが開きます。開かない場合は、内容をコピーしてください。
-          </div>
-
-          <div class="actions">
-            <button class="button primary" type="submit">メールを作成する</button>
-            <button class="button secondary" type="button" id="copyContact">内容をコピー</button>
-          </div>
-          <textarea class="copyBox" id="contactCopyBox" readonly></textarea>
-        </form>
-
-        <div class="actions"><a class="button secondary" href="https://figiecc.github.io/hanemy/">アプリを開く</a></div>
-      </section>
-    </main>
-
-    <footer><span>Hanemy β official light page</span><span class="tm">Hanemy™</span></footer>
-  </div>
   <script>
-    document.querySelectorAll('[data-scroll]').forEach((link)=>{
-      link.addEventListener('click',(event)=>{
-        const id = link.getAttribute('data-scroll');
-        const target = id === 'top' ? document.getElementById('top') : document.getElementById(id);
-        if(!target) return;
-        event.preventDefault();
-        const header = document.querySelector('header');
-        const headerHeight = header ? header.offsetHeight + 14 : 0;
-        const top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
-        window.scrollTo({ top, behavior:'smooth' });
-        history.replaceState(null, '', id === 'top' ? location.pathname : '#' + id);
-      });
-    });
-
-    const CONTACT_EMAIL = 'figie.cc@gmail.com';
-    const contactForm = document.getElementById('contactForm');
-    const contactCopyBox = document.getElementById('contactCopyBox');
-    function buildContactBody(){
-      const name = document.getElementById('contactName')?.value || '未入力';
-      const reply = document.getElementById('contactReply')?.value || '未入力';
-      const type = document.getElementById('contactType')?.value || '未選択';
-      const device = document.getElementById('contactDevice')?.value || '未選択';
-      const body = document.getElementById('contactBody')?.value || '';
-      return [
-        '【Hanemy お問い合わせ・フィードバック】',
-        '',
-        'お名前：' + name,
-        '返信先：' + reply,
-        '種類：' + type,
-        '使用端末：' + device,
-        '',
-        '内容：',
-        body,
-        '',
-        '---',
-        '送信元：Hanemy Light Homepage v0.7'
-      ].join('\n');
-    }
-    function updateContactCopy(){
-      if(!contactCopyBox) return;
-      contactCopyBox.value = buildContactBody();
-      contactCopyBox.classList.add('show');
-    }
-    if(contactForm){
-      contactForm.addEventListener('submit',(event)=>{
-        event.preventDefault();
-        const subject = encodeURIComponent('Hanemy お問い合わせ・フィードバック');
-        const body = encodeURIComponent(buildContactBody());
-        updateContactCopy();
-        location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-      });
-    }
-    document.getElementById('copyContact')?.addEventListener('click', async ()=>{
-      updateContactCopy();
-      try{
-        await navigator.clipboard.writeText(buildContactBody());
-        alert('内容をコピーしました。');
-      }catch(error){
-        contactCopyBox?.select();
-        alert('コピーできない場合は、表示された内容を手動でコピーしてください。');
-      }
-    });
-
+    location.replace("https://figie.cc/hanemy/");
   </script>
 </body>
 </html>
