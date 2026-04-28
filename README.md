@@ -1,4 +1,4 @@
-# Hanemy Light Homepage v0.9
+# Hanemy Light Homepage v0.9.1
 
 Hanemy（ハネミー）の公開β向け軽量ホームページです。
 
@@ -83,3 +83,8 @@ const CONTACT_EMAIL = 'your-email@example.com';
 - ホームページ全体の説明文を短く整理
 - 初めて見た人にも意味が伝わりやすい表現へ調整
 - 「作戦ボード」のコンセプトは残しつつ、抽象的すぎる説明を削減
+
+
+## v0.9.1 contact email set
+
+- 問い合わせ・フィードバック送信先を `figie.cc@gmail.com` に設定
