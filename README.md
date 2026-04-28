@@ -1,4 +1,4 @@
-# Hanemy Light Homepage v0.8
+# Hanemy Light Homepage v0.9
 
 Hanemy（ハネミー）の公開β向け軽量ホームページです。
 
@@ -76,3 +76,10 @@ const CONTACT_EMAIL = 'your-email@example.com';
 - ホームページに「スマホのホーム画面に追加できます」案内を追加
 - iPhone / Android それぞれの追加手順を短く明記
 - 目立ちすぎない補助セクションとして配置
+
+
+## v0.9 wording cleanup
+
+- ホームページ全体の説明文を短く整理
+- 初めて見た人にも意味が伝わりやすい表現へ調整
+- 「作戦ボード」のコンセプトは残しつつ、抽象的すぎる説明を削減
