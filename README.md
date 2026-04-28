@@ -1,4 +1,4 @@
-# Hanemy Light Homepage v0.6.2
+# Hanemy Light Homepage v0.7
 
 Hanemy（ハネミー）の公開β向け軽量ホームページです。
 
@@ -53,3 +53,19 @@ https://figiecc.github.io/hanemy/
 - ブラウザタブに表示される `favicon.png` を新ブランドアイコンへ差し替え
 - `icon-192.png` / `icon-512.png` も新ブランドアイコンへ差し替え
 - favicon参照にキャッシュ対策のクエリを追加
+
+
+## v0.7 mailto contact
+
+- Googleフォームを使わず、ホームページ内に問い合わせ・フィードバック欄を追加
+- 入力内容を `mailto:` でメールアプリへ渡す方式
+- 入力内容はページ内にもサーバーにも保存しない
+- メールアプリが開かない場合に備え、内容コピー用の欄を追加
+
+### 公開前に必ず変更すること
+
+`index.html` 内の以下を、実際の受信用メールアドレスへ変更してください。
+
+```js
+const CONTACT_EMAIL = 'your-email@example.com';
+```

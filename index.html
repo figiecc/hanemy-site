@@ -159,8 +159,75 @@
     .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.step{border-radius:20px;background:#fff8ef;border:1px solid var(--line);padding:14px}.step span{display:inline-flex;width:28px;height:28px;border-radius:999px;align-items:center;justify-content:center;background:#ffe3b6;color:var(--accent);font-weight:950;margin-bottom:8px}.step strong{display:block}.step p{margin:4px 0 0;color:var(--muted);font-size:.9rem;font-weight:700}
     footer{margin-top:28px;text-align:center;color:var(--muted);font-size:.82rem;font-weight:800}.tm{display:block;margin-top:4px;font-weight:950}
     [id]{scroll-margin-top:84px}
+
+    .contactForm{
+      display:grid;
+      gap:12px;
+      margin-top:18px;
+    }
+    .contactGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    .contactField{
+      display:grid;
+      gap:6px;
+    }
+    .contactField label{
+      color:var(--muted);
+      font-size:.86rem;
+      font-weight:900;
+    }
+    .contactField input,
+    .contactField select,
+    .contactField textarea{
+      width:100%;
+      border:1px solid rgba(93,63,38,.14);
+      border-radius:17px;
+      background:rgba(255,255,255,.82);
+      padding:12px 13px;
+      color:var(--ink);
+      font:inherit;
+      font-weight:750;
+      outline:none;
+    }
+    .contactField textarea{
+      min-height:130px;
+      resize:vertical;
+      line-height:1.65;
+    }
+    .contactField input:focus,
+    .contactField select:focus,
+    .contactField textarea:focus{
+      border-color:rgba(244,127,20,.55);
+      box-shadow:0 0 0 4px rgba(244,127,20,.12);
+    }
+    .contactNote{
+      padding:12px 14px;
+      border-radius:18px;
+      background:#fff8ef;
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-size:.9rem;
+      font-weight:750;
+    }
+    .copyBox{
+      width:100%;
+      min-height:96px;
+      border-radius:18px;
+      border:1px dashed rgba(93,63,38,.18);
+      background:rgba(255,255,255,.72);
+      padding:12px;
+      color:var(--muted);
+      font:inherit;
+      font-size:.86rem;
+      display:none;
+    }
+    .copyBox.show{display:block}
+
     @media(max-width:760px){
-      .page{width:min(100% - 22px,520px);padding-top:8px}.nav{gap:4px;font-size:.78rem}.nav a{padding:7px 7px}.nav a.optional{display:none}.hero{grid-template-columns:1fr}.heroCard{padding:26px 22px}.sections{grid-template-columns:1fr}.previewCard{order:-1}.phone{max-width:100%}.actions .button{width:100%}.conceptList,.steps{grid-template-columns:1fr}header{margin-bottom:14px}
+      .page{width:min(100% - 22px,520px);padding-top:8px}.nav{gap:4px;font-size:.78rem}.nav a{padding:7px 7px}.nav a.optional{display:none}.hero{grid-template-columns:1fr}.heroCard{padding:26px 22px}.sections{grid-template-columns:1fr}.previewCard{order:-1}.phone{max-width:100%}.actions .button{width:100%}.conceptList,.steps,.contactGrid{grid-template-columns:1fr}header{margin-bottom:14px}
     }
   </style>
 </head>
@@ -175,6 +242,7 @@
         <a href="#concept" data-scroll="concept">コンセプト</a>
         <a href="#features" data-scroll="features">できること</a>
         <a class="optional" href="#howto" data-scroll="howto">使い方</a>
+        <a class="optional" href="#contact" data-scroll="contact">問い合わせ</a>
         <a class="appLink" href="https://figiecc.github.io/hanemy/">アプリを開く</a>
       </nav>
     </header>
@@ -235,9 +303,61 @@
 
       <section class="contact" id="contact">
         <p class="eyebrow">CONTACT</p>
-        <h2>問い合わせ導線は準備中です。</h2>
-        <p>現在は公開βのため、外部フォームや本格的な問い合わせ導線はまだ置いていません。まずはアプリ本体を触れる状態にすることを優先しています。</p>
-        <div class="actions"><a class="button primary" href="https://figiecc.github.io/hanemy/">アプリを開く</a></div>
+        <h2>お問い合わせ・フィードバック</h2>
+        <p>ハネミーは現在、公開βとして改善中です。不具合、分かりにくかったところ、欲しい機能などがあれば送ってください。</p>
+
+        <form class="contactForm" id="contactForm">
+          <div class="contactGrid">
+            <div class="contactField">
+              <label for="contactName">お名前（任意）</label>
+              <input id="contactName" name="name" autocomplete="name" placeholder="未入力でも大丈夫です">
+            </div>
+            <div class="contactField">
+              <label for="contactReply">返信先（任意）</label>
+              <input id="contactReply" name="reply" type="email" autocomplete="email" placeholder="返信が必要な場合だけ">
+            </div>
+          </div>
+
+          <div class="contactGrid">
+            <div class="contactField">
+              <label for="contactType">内容の種類</label>
+              <select id="contactType" name="type">
+                <option>不具合</option>
+                <option>使いにくいところ</option>
+                <option>欲しい機能</option>
+                <option>感想</option>
+                <option>その他</option>
+              </select>
+            </div>
+            <div class="contactField">
+              <label for="contactDevice">使用端末</label>
+              <select id="contactDevice" name="device">
+                <option>iPhone</option>
+                <option>Android</option>
+                <option>PC</option>
+                <option>その他</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="contactField">
+            <label for="contactBody">内容</label>
+            <textarea id="contactBody" name="body" placeholder="気づいたことをそのまま書いてください。"></textarea>
+          </div>
+
+          <div class="contactNote">
+            入力内容はこのページには保存されません。送信ボタンを押すと、メールアプリが開きます。
+            メールアプリが開かない場合は、下に表示される内容をコピーして送ってください。
+          </div>
+
+          <div class="actions">
+            <button class="button primary" type="submit">メールを作成する</button>
+            <button class="button secondary" type="button" id="copyContact">内容をコピー</button>
+          </div>
+          <textarea class="copyBox" id="contactCopyBox" readonly></textarea>
+        </form>
+
+        <div class="actions"><a class="button secondary" href="https://figiecc.github.io/hanemy/">アプリを開く</a></div>
       </section>
     </main>
 
@@ -257,6 +377,56 @@
         history.replaceState(null, '', id === 'top' ? location.pathname : '#' + id);
       });
     });
+
+    const CONTACT_EMAIL = 'your-email@example.com';
+    const contactForm = document.getElementById('contactForm');
+    const contactCopyBox = document.getElementById('contactCopyBox');
+    function buildContactBody(){
+      const name = document.getElementById('contactName')?.value || '未入力';
+      const reply = document.getElementById('contactReply')?.value || '未入力';
+      const type = document.getElementById('contactType')?.value || '未選択';
+      const device = document.getElementById('contactDevice')?.value || '未選択';
+      const body = document.getElementById('contactBody')?.value || '';
+      return [
+        '【Hanemy お問い合わせ・フィードバック】',
+        '',
+        'お名前：' + name,
+        '返信先：' + reply,
+        '種類：' + type,
+        '使用端末：' + device,
+        '',
+        '内容：',
+        body,
+        '',
+        '---',
+        '送信元：Hanemy Light Homepage v0.7'
+      ].join('\n');
+    }
+    function updateContactCopy(){
+      if(!contactCopyBox) return;
+      contactCopyBox.value = buildContactBody();
+      contactCopyBox.classList.add('show');
+    }
+    if(contactForm){
+      contactForm.addEventListener('submit',(event)=>{
+        event.preventDefault();
+        const subject = encodeURIComponent('Hanemy お問い合わせ・フィードバック');
+        const body = encodeURIComponent(buildContactBody());
+        updateContactCopy();
+        location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+      });
+    }
+    document.getElementById('copyContact')?.addEventListener('click', async ()=>{
+      updateContactCopy();
+      try{
+        await navigator.clipboard.writeText(buildContactBody());
+        alert('内容をコピーしました。');
+      }catch(error){
+        contactCopyBox?.select();
+        alert('コピーできない場合は、表示された内容を手動でコピーしてください。');
+      }
+    });
+
   </script>
 </body>
 </html>
