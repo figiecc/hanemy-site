@@ -66,8 +66,10 @@
       height:42px;
       border-radius:14px;
       object-fit:cover;
-      background:#fff;
-      box-shadow:0 8px 18px rgba(102,63,25,.10);
+      background:transparent;
+      box-shadow:none;
+      border-radius:0;
+      object-fit:contain;
     }
     .nav{
       display:flex;
@@ -166,7 +168,7 @@
   <div class="page">
     <header>
       <a class="brand" href="#top" data-scroll="top">
-        <img src="./logo.png" alt="Hanemy" onerror="this.onerror=null;this.src='./assets/logo.png';">
+        <img src="./logo-icon-transparent.png" alt="Hanemy" onerror="this.onerror=null;this.src='./assets/logo-icon-transparent.png';">
         <span>Hanemy™</span>
       </a>
       <nav class="nav" aria-label="ページ内メニュー">
@@ -190,7 +192,7 @@
         </div>
         <div class="previewCard" aria-label="アプリ画面イメージ">
           <div class="phone">
-            <img class="logoWide" src="./logo.png" alt="Hanemy ハネミー" onerror="this.onerror=null;this.src='./assets/logo.png';">
+            <img class="logoWide" src="./logo-horizontal-transparent.png" alt="Hanemy ハネミー" onerror="this.onerror=null;this.src='./assets/logo-horizontal-transparent.png';">
             <div class="phoneTop"><strong>今月の作戦ボード</strong><span class="pill">楽しみ優先</span></div>
             <div class="mockBoard">
               <span class="mockLabel">今月の残り</span><strong class="mockMoney">42,000円</strong><p class="mockLabel">生活と楽しみに使える、今月の現在地です。</p>
@@ -209,6 +211,10 @@
         <p class="eyebrow">CONCEPT</p>
         <h2>かわいい家計簿ではなく、やさしい作戦ボード。</h2>
         <p>ハネミーは「何にいくら使ったか」を細かく追うよりも、「今月をどう過ごすか」を先に決めるためのアプリです。生活費を守りながら、楽しみも諦めない。そのための小さな作戦ボードを目指しています。</p>
+        
+        <div style="display:flex;justify-content:center;margin-top:18px;">
+          <img src="./mascot-transparent.png" alt="ハネミーのマスコット" style="width:min(180px,42vw);height:auto;display:block;">
+        </div>
         <div class="conceptList"><div class="conceptItem">家計簿ではない</div><div class="conceptItem">今月の判断を助ける</div><div class="conceptItem">入力はざっくり</div><div class="conceptItem">安心を優先</div></div>
       </section>
 

@@ -1,37 +1,34 @@
-# Hanemy Light Homepage v0.5
+# Hanemy Light Homepage v0.6
 
-Hanemy（ハネミー）の公開β向け軽量公式ホームページです。
+Hanemy（ハネミー）の公開β向け軽量ホームページです。
+
+## 今回の更新
+
+- 新しいブランドロゴを反映
+- 背景透過版の横長ロゴを追加
+- 背景透過版のアイコンを追加
+- 背景透過版のマスコットを追加
+- ホームページ内の表示画像を新ブランド素材に更新
+
+## 収録ファイル
+
+- `index.html`：ホームページ本体
+- `assets/logo-horizontal-transparent.png`：背景透過の横長ロゴ
+- `assets/logo-icon-transparent.png`：背景透過のアイコン
+- `assets/mascot-transparent.png`：背景透過のマスコット
+- `favicon.png`：ブラウザ用アイコン
+- `icon-192.png` / `icon-512.png`：PWA用アイコン
+- `LICENSE`：ライセンス
 
 ## 目的
 
-本格的なLPではなく、公開βに添える軽い公式ページです。
+このホームページは、本格的なLPではなく、公開βに添える軽い公式ページです。
+
+主な目的：
 
 - ハネミーが何のアプリか一瞬で伝える
 - アプリ本体へ誘導する
-- 使い方とできることを最小限で説明する
-- 問い合わせ導線は準備中であることを明記する
-
-## v0.5 の修正内容
-
-- 画像パスを修正
-- `logo.png` をルートにも配置
-- `assets/logo.png` も同梱
-- 表示画像はまず `./logo.png` を参照し、失敗時に `./assets/logo.png` へフォールバック
-- ページ内リンクのスクロール補正を維持
-
-## 公開用ファイル
-
-```text
-assets/
-  logo.png
-LICENSE
-README.md
-favicon.png
-icon-192.png
-icon-512.png
-logo.png
-index.html
-```
+- 今後、問い合わせやフィードバック導線を追加する土台にする
 
 ## アプリリンク
 
@@ -41,6 +38,5 @@ https://figiecc.github.io/hanemy/
 
 ## ブランド表記
 
-現時点では `Hanemy™` を使用します。
-
-`®` は登録商標を示すため、商標登録が完了するまでは使用しません。
+- `Hanemy™` を使用
+- `®` は使わない
